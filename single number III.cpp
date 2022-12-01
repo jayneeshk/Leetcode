@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 int main(){
 	int n;
@@ -9,26 +10,27 @@ int main(){
 	for(int i=0;i<n;i++){
 		cin>>arr[i];
 	}
-	int x0r2no=0;
-	for(int i=0;i<n;i++){
+	unsigned int x0r2no=0;
+	for(unsigned int i=0;i<n;i++){
 		x0r2no^=arr[i];
 	}
-	int lowestbit=x0r2no & (-x0r2no);
-	int result[2];
-	for(int i=0;i<2;i++){
-	    result[i]=0;
-	}
-	for(int i=0;i<n;i++){
+	unsigned int lowestbit=(x0r2no & (-x0r2no));//multiply the bit in real world !
+	vector<int>result;
+        unsigned int re0=0,re1=0;
+	for(unsigned int i=0;i<n;i++){
 		if((lowestbit & arr[i])==0){
-			result[0]^=arr[i];
+			re0 ^=arr[i];
 		}
 		else if((lowestbit & arr[i])!=0){
-			result[1]^=arr[i];
+			re1 ^=arr[i];
 		}
 	}
-	for(int i=0;i<2;i++){
-		cout<<result[i]<<" ";
+     result.push_back(re0);
+     result.push_back(re1);
+        
+	for(int i=0;i<result.size();i++)
+    {
+    	cout<<result[i]<<" ";
 	}
-	return 0;
 }
 
